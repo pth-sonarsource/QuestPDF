@@ -49,7 +49,7 @@ jobs:
         run: |
           ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"sonarsource_quality-architecture-cs-validation" /o:"sonarsource" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.scanner.sonarcloudUrl="https://sc-staging.io" /d:sonar.scanner.apiBaseUrl="https://api.sc-staging.io" /d:sonar.architecture.visualization.enabled=false /d:sonar.architecture.enable=true /d:sonar.architecture.preview.enable=true /d:sonar.architecture.preview.available=true /d:sonar.verbose=true
           dotnet build Source\QuestPDF.sln
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
       - name: Store dna xml & json files
         uses: actions/upload-artifact@v4
         with:
