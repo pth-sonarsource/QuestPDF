@@ -47,7 +47,7 @@ jobs:
           SONAR_ARCHITECTURE_EXPORT_ISSUES: true
         shell: powershell
         run: |
-          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"pth-sonarsource_questpdf" /o:"pth-sonarsource" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.branch.name=main /d:sonar.scanner.sonarcloudUrl="https://dev19.sc-dev19.io" /d:sonar.scanner.apiBaseUrl="https://api.sc-dev19.io"
+          ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"pth-sonarsource_questpdf" /o:"pth-sonarsource" /d:sonar.exclusions="**/Elements/**" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.branch.name=main /d:sonar.scanner.sonarcloudUrl="https://dev19.sc-dev19.io" /d:sonar.scanner.apiBaseUrl="https://api.sc-dev19.io"
           # ${{ runner.temp }}\scanner\dotnet-sonarscanner begin /k:"sonarsource_quality-architecture-cs-validation" /o:"sonarsource" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.scanner.sonarcloudUrl="https://sc-staging.io" /d:sonar.scanner.apiBaseUrl="https://api.sc-staging.io" /d:sonar.architecture.visualization.enabled=false /d:sonar.architecture.enable=true /d:sonar.architecture.preview.enable=true /d:sonar.architecture.preview.available=true /d:sonar.verbose=true
           dotnet build Source\QuestPDF.sln
           ${{ runner.temp }}\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
